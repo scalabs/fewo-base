@@ -3,7 +3,7 @@
     <a href="/" class="logo-nav">
       <amp-img width="204" height="144" layout="fixed" noloading src="/uploads/logo.svg"
         sizes="(max-width: 650px) 120px, 204px"></amp-img>
-      La Colonica
+      {% if site.url == 'https://lacolonica.eu' %}La Colonica{% else %}Colle DiVino{% endif %}
     </a>
     {% if site.language_menu == true %}
     <div class="lang-nav">
