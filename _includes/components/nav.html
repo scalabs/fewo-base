@@ -1,0 +1,17 @@
+<header class="navbar">
+  <nav>
+    <a href="/" class="logo-nav">
+      <amp-img width="204" height="144" layout="fixed" noloading src="/uploads/logo.svg"
+        sizes="(max-width: 650px) 120px, 204px"></amp-img>
+      La Colonica
+    </a>
+    {% if site.language_menu == true %}
+    <div class="lang-nav">
+      <span>English</span>
+      <span>Italiano</span>
+    </div>
+    {% endif %}
+  </nav>
+</header>
+
+{% include components/header-selection.html %}

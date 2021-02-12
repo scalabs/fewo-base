@@ -1,0 +1,11 @@
+{% if activity.images %}
+<div class="grid-highlight">
+    {% for image in activity.images limit: 4 %}
+    <amp-img src="{% include image/tile-small.html url=image %}" layout="flex-item">
+    </amp-img>
+    {% endfor %}
+</div>
+{% else %}
+<amp-img src="{% include image/tile-big.html url=activity.image %}" class="highlight" layout="flex-item">
+</amp-img>
+{% endif %}

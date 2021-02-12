@@ -1,0 +1,33 @@
+<div class="divider">
+    <h3>{{ item.title }}</h3>
+</div>
+{% assign activities = site.pages | where: 'activity', true | sort: 'position' %}
+{% for activity in activities %}
+
+<div id="{{ activity.slug }}" class="row small {% if activity.is_accent == true %}light{% endif %}">
+    {% assign img = activity.image | default: activity.images.first %}
+    {% include components/mobile-row-image.html image=img title=activity.title gravity=activity.gravity %}
+
+    {% if activity.is_left == true %}
+    {% include components/activity-highlight.html %}
+    {% endif %}
+
+    <div class="content">
+        <div class="desktop">
+            {% include icon/{{ activity.icon }}.svg %}
+            <h2>{{ activity.title }}</h2>
+        </div>
+        <div class="justified">
+            {{ activity.excerpt| markdownify  }}
+        </div>
+        {% if activity.overview %}
+        {% include components/facilities-overview.html overview=activity.overview %}
+        {% endif %}
+        <a href="{{ activity.url }}" class="btn">Mehr erfahren</a>
+    </div>
+
+    {% if activity.is_left == false %}
+    {% include components/activity-highlight.html %}
+    {% endif %}
+</div>
+{% endfor %}

@@ -1,0 +1,31 @@
+<div class="carousel desktop">
+    {% for slide in item.carousel %}
+{% include carousel-slide.html %}
+    {% endfor %}
+</div>
+
+<amp-carousel type="slides" layout="fixed-height" height="550" class="carousel mobile" loop controls>
+    {% for slide in item.carousel %}
+    <div class="slide">
+        <amp-img src="{% include image/gallery.html url=slide.image %}" alt="{{ slide.alt }}" layout="fixed-height" height="550">
+        </amp-img>
+        <div class="overlay">
+    
+            <div class="property">
+                {% if slide.icon %}
+                {% include icon/{{ slide.icon }}.svg %}
+                <br>
+                {% endif %}
+                {% if slide.stars %}
+                    {% include icon/grade.svg %}
+                    {% include icon/grade.svg %}
+                    {% include icon/grade.svg %}
+                    {% include icon/grade.svg %}
+                    {% include icon/grade.svg %}<br>
+                {% endif %}
+                <h1>{{ slide.alt }}</h1>
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+</amp-carousel>

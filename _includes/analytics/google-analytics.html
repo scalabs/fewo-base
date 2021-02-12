@@ -1,0 +1,47 @@
+<amp-analytics type="googleanalytics" {% if site.cookie_consent %}data-block-on-consent="_till_accepted" {% endif %}>
+    <script type="application/json">
+        {
+            "vars": {
+                "account": "{{ site.google_analytics }}",
+                "gtag_id": "{{ site.google_analytics }}",
+                "config": {
+                    "{{ site.google_analytics }}": {
+                        "groups": "default"
+                    }
+                }
+            },
+          "triggers": {
+              "trackPageview": {
+                  "on": "visible",
+                  "request": "pageview",
+                  "vars": {
+                    "title": "{{title}}"
+                  },
+                  "extraUrlParams": {
+                    "lcp": "${largestContentfulPaint}",
+                    "cls": "${cumulativeLayoutShift}",
+                    "fid": "${firstInputDelay}"
+                  }
+              },
+              "formSubmit": {
+                "on": "amp-form-submit",
+                "request": "pageview"
+              },
+              "formSubmitSuccess": {
+                "on": "amp-form-submit-success",
+                "request": "pageview",
+                "vars": {
+                  "eventId": "form-submit-success"
+                }
+              },
+              "formSubmitError": {
+                "on": "amp-form-submit-error",
+                "request": "pageview",
+                "vars": {
+                  "eventId": "form-submit-error"
+                }
+              }
+          }
+      }
+    </script>
+</amp-analytics>

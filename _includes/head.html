@@ -1,0 +1,12 @@
+<head>
+{% if page.amp_type == "story" %}
+    <meta name="amp-experiments-opt-in" content="amp-story,amp-story-v1,amp-story-scaling,amp-story-responsive-units">
+{% endif %}
+
+    {% include head/seo.html %}
+    {% include head/amp-boilerplate.html %}
+    {% include head/amp-custom.html %}
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    {% include head/google-fonts.html %}
+    {% include head/amp-components.html %}
+</head>

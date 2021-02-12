@@ -1,0 +1,5 @@
+<div class="grid-highlight">
+    {% for image in facility.images limit: 4 %}
+    <amp-img layout="flex-item" src="{% include image/tile-small.html src=image %}"></amp-img>
+    {% endfor %}
+</div>

@@ -1,0 +1,136 @@
+<div class="divider">
+    {% assign item = site.home | where: 'unique_id', 'booking' | first %}
+    <h3>{{ item.title }}</h3>
+</div>
+<div class="row" id="booking">
+    <div class="content">
+        <h3>Verfügbarkeit</h3>
+        {% assign subtract = site.time | date: '%-m' | plus: 0 %}
+        <header class="calendar-nav">
+            <div class="navigation">
+                <a class="item" on="tap:calCarousel.goToSlide(index={{ site.time | date: '%-m' | minus: subtract }})" role="button"
+                    tabindex="0">Jetzt
+                    <br>
+                    <small>
+                        {{ site.time | date: "%d.%m.%Y" }}
+                    </small>
+                </a>
+                {% assign prices = site.prices | sort: 'position' %}
+                {% for price in prices %}
+                <a class="item" on="tap:calCarousel.goToSlide(index={{ price.from_date | date: '%-m' | minus: subtract }})"
+                    role="button" tabindex="0">{{ price.title }}
+                    <br>
+                    <small>
+                        {{ price.from_date | date: "%d.%m" }} -
+                        {{ price.to_date | date: "%d.%m" }}
+                    </small>
+                </a>
+                {% endfor %}
+            </div>
+        </header>
+        <div class="grid">
+            <amp-state id="bookingDates">
+                <script type="application/json">
+                    [
+                        "{{ site.time |  date: '%Y-%d-%m' }}",
+                        "{{ site.time |  date: '%Y-%d-%m' }}"
+                    ]
+                </script>
+            </amp-state>
+            <amp-selector layout="container" on="select: AMP.setState({
+                bookingDates: event.selectedOptions
+              })">
+                <amp-base-carousel id="calCarousel" layout="fixed" height="350" width="750"
+                    sizes="(max-width: 800px) 350px, 750px" visible-count="(max-width: 800px) 1, 2" advance-count="1">
+                    <button slot="next-arrow" class="carousel-next" aria-label="Nächste"></button>
+                    <button slot="prev-arrow" class="carousel-prev" aria-label="Vorherige"></button>
+                    {% assign total_count = 1 %}
+                    {% assign current_month_label = site.time | date: '%m%Y' %}
+                    {% assign months = site.data.calendar.months %}
+
+                    {% assign previous_month = months.first %}
+                    {% capture previous_month_date %}
+                    {{ previous_month.label2 }}-{{ previous_month.label }}-{{ previous_month.days }}T00:00:00z
+                    {% endcapture %}
+
+                    {% assign found_previous_month = false %}
+
+                    {% for month in months %}
+                    {% capture month_label %}{{ month.label }}{{ month.label2 }}{% endcapture %}
+                    {% if found_previous_month == true %}
+                    {% assign total_count = total_count | plus: 1 %}
+                    {% if total_count > 12 %}
+                    {% break %}
+                    {% endif %}
+                    {% include month.html %}
+                    {% else %}
+                    {% if month_label == current_month_label %}
+
+                    {% assign found_previous_month = true %}
+                    {% include month.html %}
+                    {% endif %}
+                    {% endif %}
+                    {% assign previous_month = month %}
+                    {% capture f %}
+                    {{ previous_month.label2 }}-{{ previous_month.label }}-{{ previous_month.days }}T00:00:00z
+                    {% endcapture %}
+                    {% assign previous_month_date = f %}
+                    {% endfor %}
+
+                </amp-base-carousel>
+            </amp-selector>
+        </div>
+        <div class="pricing">
+            {% assign b = site.home | where: 'unique_id', 'booking' | first %}
+            <h4>{{ b.pricing_title }}</h4>
+            {{ b.pricing_description | markdownify }}
+        </div>
+    </div>
+    <div class="highlight">
+        <h3>Nehmen Sie Kontakt auf</h3>
+        <form id="booking-form" method="post" action-xhr="{{ site.form_endpoint }}" enctype="multipart/form-data" target="_top">
+            <fieldset>
+                <p>Ihr Aufenthalt</p>
+                <div class="dates">
+                    <div class="item">
+                        <p>Von:</p>
+
+                        <input type="date" id="start" name="trip-start" value="{{ site.time |  date: '%Y-%m-%d' }}"
+                            [value]="bookingDates[0]" min="{{ site.time |  date: '%Y-%m-%d' }}" required>
+                    </div>
+                    <div class="item">
+                        <p>Bis:</p>
+                        <input type="date" id="end" name="trip-end" value="{{ site.time | date: '%Y-%m-%d' }}"
+                            [value]="bookingDates[bookingDates.length - 1]" min="{{ site.time |  date: '%Y-%m-%d' }}" [min]="bookingDates[bookingDates.length - 1]"
+                            required>
+                    </div>
+                </div>
+                <p>Ihr Name</p>
+                <input placeholder="Max Mustermann" type="text" id="name" name="name" required>
+                <p>Ihre E-Mail-Adresse</p>
+                <input placeholder="info@example.com" type="email" id="from" name="from" required>
+                <p>Ihre Telefonnummer</p>
+                <input placeholder="+xx xxx xxxx xxxx" type="tel" id="tel" name="tel" required>
+                <p>Anmerkungen</p>
+                <textarea placeholder="" id="notes" name="notes" required></textarea>
+            </fieldset>
+            <p><button class="btn" type="submit" id="">Absenden</button></p>
+            <div submit-success>
+                <template type="amp-mustache">
+                    <div class="warning success">
+                        {% include icon/check_circle.svg %}
+                        Abgesendet!
+                    </div>
+                </template>
+            </div>
+            <div submit-error>
+                <template type="amp-mustache">
+                    <div class="warning">
+                        {% include icon/new_releases.svg %}
+                        Fehler beim Absenden!
+                    </div>
+                </template>
+            </div>
+        </form>
+    </div>
+</div>

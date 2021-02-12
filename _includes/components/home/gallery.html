@@ -1,0 +1,64 @@
+<div class="divider">
+    <h3>{{ item.title }}</h3>
+</div>
+<div class="gallery">
+    <amp-carousel class="big" id="big-carousel" role="region" layout="fixed-height" height="540" type="slides">
+
+        {% assign gallery = item.gallery | sort: 'position' %}
+        {% assign count = 0 %}
+        {% assign size = gallery | size | minus: 1 %}
+        {% for slide in gallery limit: 24 %}
+
+        <div class="item">
+            <amp-img src="{% include image/gallery.html url=slide.image %}" alt="{{ slide.alt }}" layout="fill">
+            </amp-img>
+            <div class="controls">
+
+                <div class="left-control" role="button" tabindex="0"
+                    on="tap:big-carousel.goToSlide(index={% if count == 0 %}{{size}}{% else %}{{ count | minus: 1 }}{% endif %})">
+                    {% include icon/back.svg %}
+                </div>
+                <div class="caption">
+                    <p>
+                        {{ slide.alt }}{% if slide.description %}: {{ slide.description }}{% endif %}
+                    </p>
+                </div>
+                <div class="right-control" role="button" tabindex="0"
+                    on="tap:big-carousel.goToSlide(index={% if count == size %}0{% else %}{{ count | plus: 1 }}{% endif %})">
+                    {% include icon/forward.svg %}
+                </div>
+            </div>
+        </div>
+        {% assign count = count | plus: 1 %}
+        {% endfor %}
+    </amp-carousel>
+    <div class="small">
+        {% assign count = 0 %}
+
+        {% for slide in gallery limit: 24 %}
+        <div id="sitem{{ count }}" class="item{% if count == 0 %} active{% endif %}" role="button" tabindex="0"
+            on="tap:big-carousel.goToSlide(index={{ count }})">
+            <amp-img src="{% include image/gallery-thumb.html url=slide.image %}" alt="{{ slide.alt }}" layout="fill"></amp-img>
+            <div class="overlay">
+                {{ slide.alt }}
+            </div>
+        </div>
+        {% assign count = count | plus: 1 %}
+        {% endfor %}
+    </div>
+    <div class="mobile-gallery">
+        <amp-carousel type="carousel" layout="fixed-height" height="80">
+        {% assign count = 0 %}
+
+            {% for slide in gallery limit: 24 %}
+
+            <div id="sitem{{ count }}" role="button" tabindex="0" class="item" on="tap:big-carousel.goToSlide(index={{ count }})">
+                <amp-img src="{% include image/gallery-thumb-fixed.html url=slide.image %}" alt="{{ slide.alt }}" layout="fixed" height="80" width="100"></amp-img>
+                
+            </div>
+        {% assign count = count | plus: 1 %}
+
+            {% endfor %}
+        </amp-carousel>
+    </div>
+</div>

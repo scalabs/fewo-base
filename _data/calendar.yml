@@ -1,0 +1,101 @@
+months:
+  - title: Dezember 2020
+    label: "12"
+    label2: 2020
+    days: 31
+  - title: Januar 2021
+    label: "01"
+    label2: 2021
+    days: 31
+  - title: Februar 2021
+    label: "02"
+    label2: 2021
+    days: 28
+  - title: März 2021
+    label: "03"
+    label2: 2021
+    days: 31
+  - title: April 2021
+    label: "04"
+    label2: 2021
+    days: 30
+  - title: Mai 2021
+    label: "05"
+    label2: 2021
+    days: 31
+  - title: Juni 2021
+    label: "06"
+    label2: 2021
+    days: 30
+  - title: Juli 2021
+    label: "07"
+    label2: 2021
+    days: 31
+  - title: August 2021
+    label: "08"
+    label2: 2021
+    days: 31
+  - title: September 2021
+    label: "09"
+    label2: 2021
+    days: 30
+  - title: Oktober 2021
+    label: "10"
+    label2: 2021
+    days: 31
+  - title: November 2021
+    label: "11"
+    label2: 2021
+    days: 30
+  - title: Dezember 2021
+    label: "12"
+    label2: 2021
+    days: 31
+  - title: Januar 2022
+    label: "01"
+    label2: 202
+    days: 31
+  - title: Februar 2022
+    label: "02"
+    label2: 2022
+    days: 28
+  - title: März 2022
+    label: "03"
+    label2: 2022
+    days: 31
+  - title: April 2022
+    label: "04"
+    label2: 2022
+    days: 30
+  - title: Mai 2022
+    label: "05"
+    label2: 2022
+    days: 31
+  - title: Juni 2022
+    label: "06"
+    label2: 2022
+    days: 30
+  - title: Juli 2022
+    label: "07"
+    label2: 2022
+    days: 31
+  - title: August 2022
+    label: "08"
+    label2: 2022
+    days: 31
+  - title: September 2022
+    label: "09"
+    label2: 2022
+    days: 30
+  - title: Oktober 2022
+    label: "10"
+    label2: 2022
+    days: 31
+  - title: November 2022
+    label: "11"
+    label2: 2022
+    days: 30
+  - title: Dezember 2022
+    label: "12"
+    label2: 2022
+    days: 31

@@ -1,0 +1,17 @@
+<div class="mobile header-image">
+    <amp-img layout="fixed-height" 
+    src="{% include image/desktop-hero.html url=include.image gravity=include.gravity %}"
+    height="250"
+    srcset="{% include image/mobile-hero.html url=include.image gravity=include.gravity %} 400w,{% include image/tablet-hero.html url=include.image gravity=include.gravity %} 736w, {% include image/desktop-hero.html url=include.image gravity=include.gravity %} 900w"
+     {% if facility.magnify==true%}class="magnify" {% endif %} 
+     {% if facility.magnify %} 
+     on="tap:{{ facility.title | slugify }}" role="button" tabindex="0" 
+     {% endif %}>
+    </amp-img>
+    <div class="overlay">
+        <div class="property">
+            <h2>{{ include.title }}{% if incude.subtitle %}<br><small>{{ item.subtitle }}</small>{% endif %}
+            </h2>
+        </div>
+    </div>
+</div>

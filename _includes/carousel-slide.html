@@ -1,0 +1,29 @@
+<div class="slide">
+    <amp-img src="{% include image/carousel-slide.html url=slide.image %}" height="550" layout="fixed-height">
+    </amp-img>
+
+    <div class="overlay">
+        <div class="property">
+
+            <h1>{{ slide.alt }}</h1>
+        </div>
+    </div>
+    <div class="no-hover-overlay">
+        {% include icon/cursor.svg %}
+
+        <div class="property">
+            {% if slide.icon %}
+            {% include icon/{{ slide.icon }}.svg %}
+            <br>
+            {% endif %}
+            {% if slide.stars %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}<br>
+            {% endif %}
+            {{ slide.alt }}
+        </div>
+    </div>
+</div>

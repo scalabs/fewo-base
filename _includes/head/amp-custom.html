@@ -1,0 +1,10 @@
+<style amp-custom>
+    {% capture scss %}
+    {% if page.amp_type == "story" %}
+    @import 'story.scss';
+    {% else %}
+    @import 'index.scss';
+    {% endif %}
+    {% endcapture %}
+    {{ scss | scssify }}
+</style>

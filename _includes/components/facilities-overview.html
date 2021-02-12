@@ -1,0 +1,18 @@
+<div class="facilities">
+    {% for slide in include.overview %}
+    <div class="facility wide">
+        {% if slide.icon %}
+        {% include icon/{{ slide.icon }}.svg %}
+        <br>
+        {% endif %}
+        {% if slide.stars %}
+        {% include icon/grade.svg %}
+        {% include icon/grade.svg %}
+        {% include icon/grade.svg %}
+        {% include icon/grade.svg %}
+        {% include icon/grade.svg %}<br>
+        {% endif %}
+        {{ slide.label }}
+    </div>
+    {% endfor %}
+</div>

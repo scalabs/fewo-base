@@ -1,0 +1,115 @@
+---
+layout: default
+---
+
+{% include components/nav.html %}
+
+<main>
+    {% if page.image %}
+    <div class="header-image">
+        {% assign img = page.image %}
+        <amp-img layout="fixed-height" src="{% include image/desktop-hero.html url=img gravity=page.gravity %}"
+            height="250"
+            srcset="{% include image/mobile-hero.html url=img gravity=page.gravity %} 400w,{% include image/tablet-hero.html url=img gravity=page.gravity %} 736w, {% include image/desktop-hero.html url=img gravity=page.gravity %} 900w">
+        </amp-img>
+        <div class="overlay">
+            <div class="property">
+                <h1>
+                    {{ page.title }}
+                    {% if page.subtitle %}
+                    <br><small>{{ page.subtitle }}</small>
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="title-divider">
+        <h1>
+            {{ page.title }}
+        </h1>
+    </div>
+    {% endif %}
+
+    <div class="page">
+
+        {% if page.overview %}
+        {% include components/facilities-overview.html overview=page.overview %}
+        {% endif %}
+
+        {{ content }}
+
+        <div class="foot">
+            <a href="/#{{ page.slug }}" class="btn">Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    {% if page.include %}
+    {% include components/{{page.include}}.html %}
+    {% endif %}
+
+    {% if page.tiles.first.title != nil %}
+    {% assign count = 0 %}
+    {% for facility in page.tiles %}
+    <div class="row small{% if facility.is_accent == true %} light{% endif %}">
+        {% assign img = facility.image | default: facility.images.first %}
+        {% include components/mobile-row-image.html image=facility.image magnify=facility.magnify title=facility.title
+        gravity=facility.gravity %}
+        {% if facility.magnify %}
+        <amp-image-lightbox id="{{ facility.title | slugify }}" layout="nodisplay"></amp-image-lightbox>
+        {% endif %}
+        {% assign mod = count | modulo: 2 %}
+        {% if mod == 0 %}
+        {% if facility.component %}
+        {% include components/{{ facility.component }}.html %}
+        {% else %}
+        {% if facility.images %}
+        {% include components/image-grid.html images=facility.images %}
+        {% else %}
+        <amp-img
+            src="{% if facility.magnify %}{% include image/magnify.html url=facility.image %}{% else %}{% include image/tile-big.html url=facility.image gravity=facility.gravity %}{% endif %}"
+            class="highlight{% if facility.magnify %} magnify{% endif %}" {% if facility.magnify %}
+            on="tap:{{ facility.title | slugify }}" role="button" tabindex="0" {% endif %} layout="flex-item">
+        </amp-img>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        <div class="content">
+            <div class="desktop">
+                <h3>{{ facility.title }}</h3>
+            </div>
+            <div class="justified">{{ facility.description | markdownify }}</div>
+            {% if facility.link %}
+            <a href="{{ facility.link }}" class="btn" target="_blank" rel="noopener">Besuchen</a>
+            {% endif %}
+        </div>
+        {% if mod != 0 %}
+        {% if facility.component %}
+        {% include components/{{ facility.component }}.html %}
+        {% else %}
+        {% if facility.images %}
+        {% include components/image-grid.html images=facility.images %}
+        {% else %}
+        <amp-img
+            src="{% if facility.magnify %}{% include image/magnify.html url=facility.image %}{% else %}{% include image/tile-big.html url=facility.image gravity=facility.gravity %}{% endif %}"
+            class="highlight{% if facility.magnify %} magnify{% endif %}" {% if facility.magnify %}
+            on="tap:{{ facility.title | slugify }}" role="button" tabindex="0" {% endif %} layout="flex-item">
+        </amp-img>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+    </div>
+    {% assign count = count | plus: 1 %}
+    {% endfor %}
+    {% endif %}
+
+    {% include components/home/booking.html %}
+
+    <div class="page">
+        <div class="foot">
+            <a href="/#{{ page.slug }}" class="btn">Zurück zur Startseite</a>
+        </div>
+    </div>
+</main>
+
+{% include components/footer.html %}

@@ -1,0 +1,77 @@
+<amp-story standalone="">
+    <amp-story-page id="page_01">
+        <amp-story-grid-layer template="fill">
+
+            <amp-img src="{{ page.cover_image }}" width="600" height="1000"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="thirds"
+            class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer i-amphtml-story-grid-template-thirds i-amphtml-built i-amphtml-layout"
+            i-amphtml-layout="container">
+            <div style="grid-area: middle-third / middle-third / middle-third / middle-third;">
+                <div animate-in="fly-in-left" animate-in-delay="0.2s" animate-in-duration="0.3s"
+                    style="transform: translate(-427.563px, 0px);">
+                    <h1 class="white shadow-black">{{ page.title }}</h1>
+                </div>
+            </div>
+            <div style="grid-area: lower-third / lower-third / lower-third / lower-third;">
+                <div animate-in="fly-in-right" animate-in-delay="0.3s" animate-in-duration="0.3s"
+                    style="transform: translate(426.437px, 0px);">
+                    <h3 class="white shadow-black">{{ page.subtitle }}</h3>
+                </div>
+            </div>
+        </amp-story-grid-layer>
+    </amp-story-page>
+    {% assign count = 2 %}
+
+    {% for slide in page.slides %}
+    <amp-story-page id="page_{% if count < 10 %}0{% endif %}{{ count }}">
+
+        <amp-story-grid-layer template="fill">
+
+            <amp-img src="{{ slide.image }}" width="600" height="1000"></amp-img>
+
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="thirds">
+            <div grid-area="lower-third" animate-in="fly-in-right" animate-in-duration="0.3s" animate-in-delay="0.2s">
+                <div class="textbox-black">
+                    <h3 class="white shadow-green">{{ slide.title }}</h3>
+                    <p>{{ slide.description }}</p>
+                    {% if slide.link != '' and slide.link %}
+                    <a href="{{ slide.link }}" class="btn golden">Mehr erfahren</a>
+                    {% endif %}
+                </div>
+            </div>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+            <span class="badge-green badge-fixed-top">La Colonica</span>
+        </amp-story-grid-layer>
+
+    </amp-story-page>
+
+    {% assign count = count | plus: 1 %}
+    {% endfor %}
+
+    <amp-story-page id="page_{% if count < 10 %}0{% endif %}{{count}}">
+
+        <amp-story-grid-layer template="fill">
+
+            <amp-img src="/uploads/06_-trackman-1500x1000.jpg" width="600" height="1000"></amp-img>
+
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="thirds">
+            <div grid-area="lower-third" animate-in="fly-in-right" animate-in-duration="0.3s" animate-in-delay="0.2s">
+                <div class="textbox-black">
+                    <h3 class="white shadow-green">Besuchen Sie unser Ferienhaus</h3>
+                    <p>Untertitel</p>
+                    <a href="{{ slide.link }}" class="btn golden large">Mehr erfahren</a>
+
+                </div>
+            </div>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+            <span class="badge-green badge-fixed-top">La Colonica</span>
+        </amp-story-grid-layer>
+
+    </amp-story-page>
+
+</amp-story>

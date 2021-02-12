@@ -1,0 +1,33 @@
+<div class="row">
+    <amp-img layout="flex-item" class="highlight" src="{{ item.image }}"></amp-img>
+
+    <div class="content">
+        <div class="desktop">
+            <h2>{{ item.title }}</h2>
+        </div>
+        <div class="justified">
+            {{ activity.excerpt| markdownify }}
+        </div>
+        {% if item.overview %}
+        <div class="facilities reverse">
+            {% for slide in item.overview %}
+            <div class="facility wide">
+                {% if slide.icon %}
+                {% include icon/{{ slide.icon }}.svg %}
+                <br>
+                {% endif %}
+                {% if slide.stars %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}
+                {% include icon/grade.svg %}<br>
+                {% endif %}
+                {{ slide.label }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <a href="/must-see" class="btn">Mehr erfahren</a>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="row" id="{{ item.slug }}">
+    {% include components/mobile-row-image.html title=item.title subtitle=item.subtitle image=item.image gravity=item.gravity %}
+
+    <div class="content">
+        <div class="desktop">
+            <h2>{{ item.title }}<br><small>{{ item.subtitle }}</small>
+            </h2>
+        </div>
+        <div class="justified">{{ item.content | markdownify }}</div>
+        <div class="facilities">
+            {% for facility in item.overview %}
+            <div class="facility">
+                {% include icon/{{ facility.icon }}.svg %}<br>
+                {{ facility.label }}
+            </div>
+            {% endfor %}
+        </div>
+        <a class="btn" href="/ausstattung">Mehr erfahren</a>
+
+    </div>
+
+    <amp-img src="{% include image/tile-big.html  url=item.image %}" class="highlight" layout="flex-item">
+    </amp-img>
+
+</div>

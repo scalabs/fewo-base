@@ -1,0 +1,1 @@
+https://res.cloudinary.com/scalabs/image/upload/c_fill,h_{{ include.height }},q_auto:eco,w_{{ include.width }}/{{ include.url | split: '/' | last | split: '.' | first | replace: '%26', '-' | replace: '%20', '-' | slugify | replace: '_','-' | replace: '---', '-' | replace: '--', '-' }}.jpg

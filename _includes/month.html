@@ -1,0 +1,95 @@
+{% assign weekday = previous_month_date | date: '%u'| plus: 0 %}
+{% if month_label == current_month_label %}
+{% assign day_in_month = site.time | date: "%d" | plus: 1 %}
+{% else %}
+{% assign day_in_month = 0 %}
+{% endif %}
+
+<div class="month" id="month-{{ month_label }}">
+    <div class="title">
+        {{ month.title }}
+    </div>
+    <div class="days">
+        <div class="rw">
+            <span class="d l">Mo</span>
+            <span class="d l">Di</span>
+            <span class="d l">Mi</span>
+            <span class="d l">Do</span>
+            <span class="d l">Fr</span>
+            <span class="d l">Sa</span>
+            <span class="d l">So</span>
+        </div>
+
+        {% assign count = 1 %}
+        <div class="rw">
+            {% assign offset = previous_month.days | minus: weekday %}
+            {% if weekday != 7 %}
+            {% for i in (1..7) %}
+            {% assign d = i | plus: offset %}
+            {% if d > previous_month.days %}
+            {% break %}
+            {% endif %}
+            <span class="d x">{{ d }}</span>
+            {% assign count = count | plus: 1 %}
+            {% endfor %}
+            {% endif %}
+
+            {% for i in (1..33) %}
+
+            {% if i > month.days %}
+            {% break %}
+            {% endif %}
+
+            {% assign mod = count | modulo: 7 %}
+            {% if mod == 1 and count > 6 %}
+            </div><div class="rw">
+            {% endif %}
+
+            {% assign current_date = i | append: '' %} 
+            {% assign is_occupied=false %}
+
+            {% for doc in site.occupancy %} 
+            
+            
+            {% assign mon = month.label | plus: 0 %}
+            {% assign from_day = doc.from_date | date: "%-d" | plus: 0 %} 
+            {% assign from_month = doc.from_date | date: "%m" | plus: 0 %}
+
+            {% assign to_day = doc.to_date | date: "%-d" | plus: 0 %} 
+            {% assign to_month = doc.to_date | date: "%m" | plus: 0 %}
+    
+
+            {% if from_month == mon or to_month == mon %}
+            
+            {% if mon == to_month and i <= to_day and from_month != to_month %}
+
+            {% assign is_occupied = true %}
+            
+            {% elsif mon == from_month and i >= from_day and from_month != to_month  %}
+
+            {% assign is_occupied = true %}
+
+            {% elsif from_month == to_month and i >= from_day and i<= to_day %}
+            {% assign is_occupied = true %}
+            
+            {% else %}
+            {% assign is_occupied = false %}
+            {% endif %}
+
+            {% elsif mon > from_month and mon < to_month %}
+            {% assign is_occupied = true %}
+            {% endif %}
+
+            {% endfor %}
+
+            <span class="d {% if is_occupied %} s{% endif %}{% if i <= day_in_month %}x{% endif %}" {% if i > day_in_month and is_occupied != true %}option="{{ site.time | date: "%Y" }}-{{ month.label }}-{% if i < 10 %}0{% endif %}{{ i }}"{% endif %}>
+                {{ i }}
+            </span>
+
+
+            {% assign count = count | plus: 1 %}
+            {% endfor %}
+        </div>
+
+    </div>
+</div>

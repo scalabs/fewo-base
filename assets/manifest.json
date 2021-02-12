@@ -1,0 +1,49 @@
+---
+permalink: manifest.json
+layout: none
+---
+
+{
+    "name": "{{ site.title }}",
+    "short_name": "{{ site.short_title | default: site.title }}",
+    "start_url": "https://lacolonica.eu/",
+    "display": "standalone",
+    "theme_color": "{{ site.color }}",
+    "background_color": "{{ site.background_color }}",
+    "lang": "{{ site.lang | default: "de-DE" }}",
+    "scope": "{{ site.baseurl }}",
+    "orientation": "portrait-primary",
+    "description": "{{ site.description }}",
+    "icons": [
+        {
+            "src": "{{ site.baseurl }}/uploads/57x57.png",
+            "sizes": "57x57",
+            "type": "image/png"
+        },
+        {
+            "src": "{{ site.baseurl }}/uploads/72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "{{ site.baseurl }}/uploads/114x114.png",
+            "sizes": "114x114",
+            "type": "image/png"
+        },
+        {
+            "src": "{{ site.baseurl }}/uploads/144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "{{ site.baseurl }}/uploads/196x196.png",
+            "sizes": "196x196",
+            "type": "image/png"
+        },
+        {
+            "src": "{{ site.baseurl }}/uploads/512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
