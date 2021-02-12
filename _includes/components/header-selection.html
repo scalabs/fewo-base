@@ -13,14 +13,14 @@
         <div class="outer-content">
             <div class="inner-content">
 
-                <div class="item active">
+                <div class="item {% if site.url == 'https://lacolonica.eu' %}active{% endif %}">
                     {% include icon/lacolonica.svg %}
                     <div>
                         <h3>Luxusurlaub in der italienischen Toskana</h3>
                     </div>
                 </div>
                 
-                <a class="item">
+                <a class="item {% if site.url == 'https://colledivino.de' %}active{% endif %}">
                     {% include icon/colledivino.svg %}
                     <div>
                         <h3>Die Aussicht über Würzburg genießen</h3>
