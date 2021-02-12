@@ -82,7 +82,7 @@
 
             {% endfor %}
 
-            <span class="d {% if is_occupied %} s{% endif %}{% if i <= day_in_month %}x{% endif %}" {% if i > day_in_month and is_occupied != true %}option="{{ site.time | date: "%Y" }}-{{ month.label }}-{% if i < 10 %}0{% endif %}{{ i }}"{% endif %}>
+            <span class="d {% if i <= day_in_month %}x{% else %}{% if is_occupied %} s{% endif %}{% endif %}" {% if i > day_in_month and is_occupied != true %}option="{{ site.time | date: "%Y" }}-{{ month.label }}-{% if i < 10 %}0{% endif %}{{ i }}"{% endif %}>
                 {{ i }}
             </span>
 
