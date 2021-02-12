@@ -1,0 +1,203 @@
+section {
+    position: relative;
+
+    .header-selection {
+        border: none;
+        border-bottom: .1rem solid $grey;
+
+        background-color: transparent;
+        min-height: 3rem;
+        width: 100%;
+        padding: 2rem;
+
+
+        font-family: $serif;
+
+
+        @include breakpoint('tablet') {
+            .title {
+                color: $dark;
+                margin: 0;
+                font-size: 1.3rem;
+            }
+
+            .mobile-title {
+                display: none;
+            }
+        }
+
+        @include breakpoint('mobile') {
+            padding: 1.5rem;
+
+            .mobile-title {
+                color: $dark;
+                margin: 0;
+                font-size: 1.3rem;
+            }
+
+            .title {
+                display: none;
+            }
+        }
+
+
+
+        .outer {
+            max-width: calc(#{$max-width-column} + 2rem);
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+
+            .inner {
+                margin: .4rem;
+                margin-right: 2.5rem;
+                @include breakpoint('mobile'){
+                    margin-right: 1.5rem;
+                }
+                display: inline-flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+        }
+    }
+
+
+    .outer-content {
+        box-shadow: 0 0 0.4rem $grey;
+        border-bottom: 1px solid $grey;
+        margin-bottom: .8rem;
+
+        .inner-content {
+            max-width: $max-width-column;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-evenly;
+
+            .item {
+                cursor: pointer;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 0 1rem;
+                text-align: center;
+
+                &:first-child {
+
+                    margin: 1rem .5rem 1rem 0;
+                }
+
+                &:last-child {
+                    margin: 1rem 0 1rem .5rem;
+
+                }
+
+                background-color: $grey;
+
+                h3 {
+                    letter-spacing: .2rem;
+                    font-size: 1rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                svg {
+                    margin-top: .5rem;
+                }
+
+                transition: all .5s ease;
+
+                border:.2rem solid $grey;
+
+                #colledivino-logo,
+                #lacolonica-logo {
+                    text {
+                        font-family: $serif;
+                        fill: $dark;
+                    }
+                }
+
+                &.active {
+                    border-color: $light;
+                    background-color: $light;
+
+                    #colledivino-logo,
+                    #lacolonica-logo {
+                        text {
+                            fill: $white;
+                        }
+                    }
+
+                    h3 {
+                        color: $white;
+                    }
+                }
+
+                &:hover {
+                    border-color: $light;
+                    color: $dark;
+                }
+
+            }
+
+            @media (max-width: $max-width-column - 1) {
+                .item {
+                    &:first-child {
+
+                        margin: 1rem .5rem 1rem 1rem;
+                    }
+
+                    &:last-child {
+                        margin: 1rem 1rem 1rem .5rem;
+
+                    }
+                }
+
+            }
+
+            @include breakpoint('mobile') {
+                flex-direction: column;
+
+                .item {
+                    &:first-child {
+
+                        margin: 1rem 1rem .5rem 1rem;
+                    }
+
+                    &:last-child {
+                        margin: .5rem 1rem 1rem 1rem;
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    &:not([expanded]) {
+        .header-selection {
+            #expand-less {
+                display: none;
+            }
+
+            #expand-more {
+                display: inline;
+            }
+        }
+    }
+
+    &[expanded] {
+        .header-selection {
+            #expand-less {
+                display: inline;
+            }
+
+            #expand-more {
+                display: none;
+            }
+        }
+    }
+}

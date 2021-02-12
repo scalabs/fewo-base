@@ -1,0 +1,53 @@
+@import "_variables.scss";
+
+form {
+    fieldset {
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: .5rem 0;
+        margin-bottom: 1rem;
+        border: none;
+        color: $dark;
+        border-bottom: solid .1rem $dark;
+        border-radius: 0;
+        font-size: 1.2rem;
+        font-family: $serif;
+        background-color: $white;
+    }
+
+    .dates {
+        display: flex;
+        @include breakpoint('mobile'){
+            flex-direction: column;
+        }
+
+        .item {
+            @include breakpoint('tablet'){
+
+                &:first-child{
+                    margin-right: .5rem;
+                }
+                &:last-child{
+                    margin-left: .5rem;
+                }
+            }
+            flex: 1;
+        }
+    }
+
+    input [type=date] {
+        color: $dark;
+
+    }
+
+    margin-bottom: 2rem;
+}

@@ -1,0 +1,177 @@
+.carousel {
+    display: flex;
+    height: calc(100% / 3);
+    margin: 0 auto;
+
+    &.mobile {
+        @include breakpoint('desktop') {
+            display: none;
+        }
+
+        .overlay {
+            opacity: 1;
+        }
+
+        .no-hover-overlay {
+            display: none;
+        }
+    }
+
+    &.desktop {
+        @include breakpoint('until-desktop') {
+            display: none;
+        }
+    }
+
+    .slide {
+        position: relative;
+        flex: 1;
+        transition: .3s all;
+        overflow: hidden;
+        margin: 1rem .5rem;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        img {
+            object-fit: cover;
+        }
+
+        border-left: 0.05rem solid #ffc68c;
+        border-right: 0.05rem solid #ffc68c;
+
+        &:first-child {
+            flex: 3;
+
+            @include breakpoint('desktop') {
+                .no-hover-overlay {
+                    opacity: 0;
+                }
+
+                .overlay {
+                    opacity: 1;
+                }
+
+
+            }
+
+        }
+
+        amp-img {
+            object-fit: cover;
+        }
+
+        .overlay {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            background: linear-gradient(to bottom, transparent, rgba($black, .65));
+
+            @include breakpoint('desktop') {
+
+                opacity: 0;
+            }
+
+            transition-delay: .5s;
+
+            transition: .5s all;
+
+            // TODO set transition delays
+
+            .property {
+                margin: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: .1rem solid $sandybrown;
+                text-align: center;
+                font-family: $serif;
+                color: $white;
+
+                h1 {
+                    margin: 0;
+                }
+            }
+        }
+
+        .no-hover-overlay {
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba($black, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            opacity: 1;
+            
+            transition-delay: 0;
+
+            transition: .2s all;
+            // TODO set transition delays
+
+            .property {
+                position: absolute;
+                bottom: 0;
+                margin: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: .1rem solid $sandybrown;
+                text-align: center;
+                font-size: 1.5rem;
+                font-family: $serif;
+                color: $white;
+                letter-spacing: .2rem;
+            }
+        }
+    }
+
+    &:hover {
+
+        .slide {
+
+            &:first-child {
+                flex: 1;
+
+                @include breakpoint('desktop') {
+
+                    .no-hover-overlay {
+                        opacity: 1;
+                    }
+
+                    .overlay {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            &:hover {
+                flex: 3;
+
+                @include breakpoint('desktop') {
+
+                    .no-hover-overlay {
+                        opacity: 0;
+                        transition-delay: .5s;
+
+            transition: .5s all;
+                    }
+
+                    .overlay {
+                        opacity: 1;
+                        transition-delay: 0;
+
+                        transition: .2s all;
+                    }
+                }
+            }
+        }
+    }
+}

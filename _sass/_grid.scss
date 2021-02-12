@@ -1,0 +1,330 @@
+@import '_variables.scss';
+
+.row {
+    display: flex;
+    min-height: 500px;
+    margin: 1rem auto;
+
+    @include breakpoint('desktop') {
+        &>*:last-child {
+            margin-left: 1rem;
+        }
+    }
+
+
+    &.small {
+        min-height: 380px;
+    }
+
+    .grid-highlight {
+        flex: 3;
+        display: inline-grid;
+        grid-template-columns: repeat(2, [col-start] 1fr);
+        grid-gap: 1rem;
+
+        img {
+
+            object-fit: cover;
+        }
+
+
+        @include breakpoint('until-desktop') {
+            display: none;
+        }
+    }
+
+    .icon-highlight {
+        flex: 3;
+        display: inline-grid;
+        grid-template-columns: repeat(3, [col-start] 1fr);
+        grid-gap: 1rem;
+        justify-items: stretch;
+        padding: 3rem 1rem 1rem;
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+
+            .num {
+                font-size: 2.4rem;
+                line-height: 1.8rem;
+                font-family: $serif;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .caption {
+                font-size: .7rem;
+                text-align: center;
+            }
+        }
+
+    }
+
+    ul {
+        @include breakpoint('tablet') {
+            column-count: 2;
+        }
+
+        li {
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            list-style-type: circle;
+            background-color: transparent;
+
+            &:nth-of-type(odd) {
+                background-color: transparent;
+            }
+        }
+    }
+
+
+    .highlight {
+        flex: 3;
+
+        display: flex;
+        min-height: 465px;
+
+        img {
+
+            object-fit: cover;
+        }
+
+        @include breakpoint('until-desktop') {
+            display: none;
+        }
+    }
+
+    .magnify {
+        background-color: $grey;
+        cursor: zoom-in;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    @include breakpoint('until-desktop') {
+        flex-direction: column;
+
+        .mobile {
+            margin: 0;
+        }
+
+        .desktop {
+            display: none;
+        }
+    }
+
+
+    @include breakpoint('desktop') {
+        .mobile {
+            display: none
+        }
+
+    }
+
+    .desktop {
+        text-align: center;
+    }
+
+    .content {
+        flex: 4;
+
+        .justified {
+            @include justified();
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                text-align: center;
+            }
+
+            blockquote * {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+        }
+
+        @include breakpoint('mobile') {
+            padding: 2rem 2rem 3rem;
+        }
+
+        @include breakpoint('tablet') {
+            padding: 2rem 3rem 3rem;
+        }
+
+        @include breakpoint('desktop') {
+            padding: 2rem 4rem;
+            min-height: 400px;
+        }
+
+        @include breakpoint('mobile') {
+            min-height: 320px;
+        }
+
+        @include breakpoint('tablet') {
+            min-height: 250px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 1rem 0 1rem;
+        }
+
+        h3+h3 {
+            margin-top: 0;
+        }
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-color: $grey;
+
+        p {
+            margin-top: 0;
+            max-width: $max-width-text;
+        }
+
+        .properties-grid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 3rem 2rem 3rem;
+            display: flex;
+            align-items: flex-end;
+            flex-direction: row;
+
+            .property {
+                flex: 1;
+                margin: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: .1rem solid $sandybrown;
+                text-align: center;
+                font-size: 1.5rem;
+                font-family: $serif;
+            }
+        }
+    }
+}
+
+.facilities {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    &.reverse{
+        flex-wrap: wrap-reverse;
+    }
+
+    .facility {
+
+        padding-bottom: 1rem;
+        border-bottom: .1rem solid $sandybrown;
+        text-align: center;
+        font-family: $sans-serif;
+
+        width: 100px;
+        margin: .8rem;
+        padding-bottom: 1rem;
+        border-bottom: 0.1rem solid #ffc68c;
+        text-align: center;
+        font-size: .8rem;
+        font-family: "Poppins", sans-serif;
+
+        @include breakpoint('desktop') {
+            &.wide {
+                margin: 1rem;
+                font-size: .9rem;
+
+                width: 200px;
+            }
+        }
+
+        @include breakpoint('desktop') {
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.grade {
+    margin-left: -0.5rem;
+}
+
+.corona-warning {
+
+    @include divider(3rem, $light, $white);
+
+    margin: 2rem 0 3rem;
+
+
+    .btn {
+        margin: 0 0 0 1.5rem;
+        color: $white;
+        border-color: $white;
+    }
+
+    @include breakpoint('mobile') {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+        margin: 1rem 0 2rem;
+
+        .btn {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
+}
+
+.divider {
+    @include divider(2rem, $light, $white);
+}
+
+.title-divider {
+    @include divider(2rem, $light, $white);
+    margin-top: 1rem;
+}
+
+footer {
+
+    max-width: calc(#{$max-width-column} + 2rem);
+    margin: auto;
+
+    .inner {
+        @include divider(2rem, $light, $white);
+        margin: 0 1rem;
+
+        a {
+            margin: 0 1rem;
+            color: $white;
+            text-decoration: none;
+            font-size: 1.3rem;
+        }
+    }
+}

@@ -1,0 +1,64 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: $serif;
+    height: 7rem;
+
+    @include breakpoint('mobile') {
+        height: 6rem;
+    }
+
+    nav {
+        max-width: calc(#{$max-width-column} + 2rem);
+        margin: auto;
+        height: 7rem;
+
+        @include breakpoint('mobile') {
+            height: 6rem;
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .lang-nav {
+            margin-right: 1rem;
+
+            font-family: $serif;
+            font-size: 1.3rem;
+
+            span {
+                margin-left: .5rem;
+            }
+        }
+
+        .logo-nav {
+            @include breakpoint('tablet') {
+                margin-left: 1rem;
+            }
+
+            display: flex;
+            align-items: center;
+            font-family: $serif;
+            font-size: 3rem;
+            color: $dark;
+            z-index: 1000;
+            text-decoration: none;
+
+            @include breakpoint('mobile') {
+
+                amp-img {
+                    height: 80px;
+                }
+
+                font-size: 2rem;
+            }
+
+            span {
+                margin-left: .5rem;
+            }
+        }
+    }
+}

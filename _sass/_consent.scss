@@ -1,0 +1,29 @@
+#consent-ui {
+
+    .inner {
+        max-width: calc(#{$max-width-column} - 2rem);
+        margin: auto;
+        background-color: $light;
+        text-align: center;
+        padding: 1rem;
+        color: $white;
+
+        a {
+            color: $white;
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+
+        .btn {
+            border-color: $white;
+            color: $white;
+            &.primary{
+                border-color: $black;
+                color: $black;
+                background-color: $grey;
+            }
+        }
+    }
+}

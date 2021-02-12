@@ -1,0 +1,226 @@
+@import '_variables.scss';
+
+
+
+
+#booking {
+
+    .carousel-prev,
+    .carousel-next {
+        width: 35px;
+        height: 35px;
+        border-radius: 2px;
+        background-color: rgba(0, 0, 0, 0.5);
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        outline: none;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .warning {
+        border-radius: .2rem;
+        background-color: rgba($sandybrown, 0.5);
+        color: $dark;
+        border: 1px solid $dark;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem 0;
+        padding: 1rem;
+        font-size: 1.2rem;
+        font-family: $serif;
+        text-align: center;
+
+        svg {
+            fill: $dark;
+        }
+
+    }
+
+
+    overflow: hidden;
+
+    * {
+        overflow: hidden;
+    }
+
+    .carousel-prev {
+        left: 16px;
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23fff'%3E%3Cpath d='M15 8.25H5.87l4.19-4.19L9 3 3 9l6 6 1.06-1.06-4.19-4.19H15v-1.5z'/%3E%3C/svg%3E");
+    }
+
+    .carousel-next {
+        right: 16px;
+
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23fff'%3E%3Cpath d='M9 3L7.94 4.06l4.19 4.19H3v1.5h9.13l-4.19 4.19L9 15l6-6z'/%3E%3C/svg%3E");
+    }
+
+    .calendar-nav {
+        border: none;
+        padding-right: 0;
+    }
+
+    .navigation {
+        overflow: hidden;
+
+        * {
+            overflow: hidden;
+        }
+
+        padding: 1rem 0;
+
+        display: flex;
+        max-width: 800px;
+        overflow-x: scroll;
+        flex-wrap: wrap;
+
+        align-items: center;
+        justify-content: center;
+
+        .item {
+
+            width: 110px;
+
+            background-color: transparent;
+            border: .1rem solid $dark;
+            padding: .6rem 1rem .6rem;
+            font-family: $serif;
+            font-size: 1.3rem;
+            color: $dark;
+            border-radius: .2rem;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 0 .5rem 1rem;
+            transition: background .5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            small {
+                font-size: 1rem;
+            }
+
+            &.selected,
+            &:hover {
+                background-color: $light;
+
+            }
+        }
+    }
+
+    .highlight {
+        @include breakpoint('mobile') {
+            padding: 1rem;
+        }
+
+        padding: 2rem;
+        padding-right: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .content {
+        justify-content: flex-start;
+    }
+
+    .surrounding {
+        position: absolute;
+    }
+
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+
+        .month {
+            padding: 2rem 1rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            .title {
+                color: $dark;
+                font-size: 1.3rem;
+            }
+        }
+
+
+        .days .rw {
+            display: flex;
+            flex-direction: row;
+            padding: .2rem 0;
+
+
+
+            .d {
+                transition: background .5s ease;
+                user-select: none;
+
+                &.x:not(&[option]){
+                    color: rgba($light, .35);
+                    border-color: rgba($light, .35);
+                    text-decoration: line-through;
+                    &:hover{
+                        background-color: none;
+                        box-shadow: none;
+                    }
+                }
+
+                &[selected] {
+                    outline: none;
+                }
+
+                &[selected],
+                &:hover:not(.s):not(.l):not(.x) {
+                    background-color: $light;
+                }
+
+                &:hover:not(.s):not(.l):not(.x) {
+                    box-shadow: 0 0 2px $dark;
+                }
+
+                color: $dark;
+                transition: background .5s ease;
+                font-size: .9rem;
+                padding: .2rem;
+                margin: .1rem;
+                width: 30px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+
+                &:not(.l) {
+                    border: .1rem solid $dark;
+                    border-radius: 13px;
+                }
+
+                &.l {
+                    border: .1rem solid transparent;
+                }
+
+                &.s {
+                    border-color: $light;
+                    color: $light;
+                    text-decoration: line-through;
+                }
+
+            }
+        }
+
+        .pricing {
+            font-size: .9rem;
+
+        }
+
+    }
+}

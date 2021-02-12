@@ -1,0 +1,131 @@
+.gallery {
+    .amp-carousel-button{
+        visibility: none;
+        display: none;
+        opacity: 0;
+    }
+    margin: 1rem auto;
+    display: flex;
+    height: 540px;
+    background-color: #fffefc;
+
+    flex-direction: row;
+
+    .big {
+        flex: 5;
+
+        img {
+            object-fit: cover;
+
+        }
+    }
+
+    @include breakpoint('until-desktop') {
+        flex-direction: column;
+
+        .mobile-gallery {
+            margin-top: 1rem;
+            display: block;
+        }
+    }
+
+    @include breakpoint('desktop') {
+
+        .amp-carousel-button,
+        .mobile-gallery {
+            display: none;
+        }
+    }
+
+    .small {
+        flex: 2;
+        padding: 0 0 0 1rem;
+
+        @include breakpoint('until-desktop') {
+            display: none;
+        }
+
+        display: inline-grid;
+        grid-template-columns: repeat(3, [col-start] 1fr);
+
+
+        .item {
+            border: .05rem solid $grey;
+            flex: 1;
+            position: relative;
+
+            img {
+                object-fit: cover;
+            }
+
+            :focus {
+                outline: $sandybrown solid 1px;
+            }
+
+            .overlay {
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                display: inline-flex;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+                opacity: 0;
+                transition: .5s all;
+            }
+
+            &:hover .overlay {
+                opacity: 1;
+            }
+        }
+    }
+
+    .controls {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        min-height: 3rem;
+        display: flex;
+        justify-content: space-between;
+
+        .caption {
+            padding: 1rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+
+            * {
+                margin: 0;
+            }
+        }
+
+        .right-control,
+        .left-control {
+            cursor: pointer;
+            height: 96px;
+            width: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-control {
+            border-right: .1rem solid rgba($white, 0.5);
+        }
+
+        .right-control {
+            border-left: .1rem solid rgba($white, 0.5);
+        }
+
+        background: rgba(0, 0, 0, 0.35);
+    }
+}
+
+.amp-carousel-button {}

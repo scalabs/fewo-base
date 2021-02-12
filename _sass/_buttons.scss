@@ -1,0 +1,32 @@
+.btn {
+    color: transparent;
+    border: .1rem solid $dark;
+    padding: .6rem 1rem .6rem;
+    font-family: $serif;
+    font-size: 1.2rem;
+    color: $dark;
+    border-radius: .2rem;
+    text-decoration: none;
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all .5s ease;
+    display: inline-block;
+    &:hover{
+        background: rgba($light, .5);
+        color: $black;
+    }
+    &.golden{
+        color: $sandybrown;
+        border-color: $sandybrown;
+        &:hover{
+            background: rgba($white, .5);
+            color: $dark;
+            border-color: $dark;
+        }
+    }
+    &.large{
+        padding: 1rem 2rem 1rem;
+        font-size: 1.6rem;
+    }
+}

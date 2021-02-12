@@ -1,0 +1,92 @@
+.header-image {
+    margin: 1rem auto;
+    position: relative;
+    max-width: $max-width-column;
+
+    amp-img {
+        max-height: 500px;
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    .overlay {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+        background: linear-gradient(to bottom, transparent, rgba($black, .65));
+        transition: .1s all;
+
+        svg {
+            fill: $white;
+        }
+
+        // TODO set transition delays
+
+        .property {
+            margin: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: .1rem solid $sandybrown;
+            text-align: center;
+            font-family: $serif;
+            color: $white;
+
+            h1 {
+                margin: 0;
+                @include breakpoint('until-desktop'){
+                    line-height: 3rem;
+                }
+            }
+        }
+    }
+}
+
+.page {
+    background: $grey;
+
+    @include justified();
+
+    @include breakpoint('mobile') {
+        padding: 1rem 2rem 3rem;
+    }
+
+    @include breakpoint('tablet') {
+        padding: 1rem 3rem 3rem;
+    }
+
+    @include breakpoint('desktop') {
+        padding: 2rem 4rem;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    p {
+        max-width: $max-width-text;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 1.8rem;
+        @include breakpoint('mobile'){
+            font-size: 1.5rem;
+        }        
+        margin: 1rem 0 1rem;
+    }
+
+    .foot {
+        margin: 2rem;
+    }
+
+    .facilities-list {
+        max-width: 50%;
+    }
+}

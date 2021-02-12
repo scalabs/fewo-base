@@ -1,0 +1,119 @@
+---
+permalink: "/assets/map.html"
+layout: none
+---
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Orte in der Toskana</title>
+    <meta name='robots' content='noindex, nofollow'>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='https://fonts.googleapis.com/css?family={{ site.google_fonts | join: "|" | replace: " ", "+" }}'
+        rel='stylesheet'>
+    {% capture scss %}
+    @import '_base.scss';
+    @import '_map.scss';
+    {% endcapture %}
+    <style>
+        {{ scss | scssify }}
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script>
+        var points = {% include generated/points.json %};
+    </script>
+    <script>
+
+        function initMap() {
+            const urlParams = new URLSearchParams(window.location.search);
+            var placesList;
+            if (Object.keys(urlParams).includes('id')) {
+                placesList = points[urlParams.get('id')];
+            } else {
+                placesList = points[Object.keys(points)[0]];
+            }
+            var center = placesList.find(el => el.center === true);
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                streetViewControl: false,
+                center: { lat: center.lnglat[1], lng: center.lnglat[0] },
+            });
+            document.getElementById('back').addEventListener('click', (e) => {
+                map.setZoom(10);
+                map.setCenter({ lat: center.lnglat[1], lng: center.lnglat[0] });
+            });
+            map.setOptions({
+                styles: [
+                    {
+                        featureType: 'poi.business.lodging',
+                        stylers: [
+                            { visibility: "off" }
+                        ]
+                    }
+                ]
+            });
+            setMarkers(map, placesList);
+        }
+
+        function setMarkers(map, placesList) {
+            for (let i = 0; i < placesList.length; i++) {
+                const place = placesList[i];
+                let marker = new google.maps.Marker({
+                    position: { lat: place.lnglat[1], lng: place.lnglat[0] },
+                    map,
+                    title: place.title,
+                });
+                marker.addListener("click", () => {
+                    map.setZoom(15);
+                    map.setCenter(marker.getPosition());
+                });
+                var listings = document.getElementById('listings');
+                var listing = listings.appendChild(document.createElement('a'));
+                listing.className = 'item';
+
+                var p = listing.appendChild(document.createElement('p'));
+                p.href = '#';
+                p.className = 'title';
+                p.innerHTML = place.title;
+
+                if (place.distance != '') {
+                    p.innerHTML = '<strong>' + place.title + '</strong><br>ca. ' + place.distance + ' km entfernt';
+                } else {
+                    p.innerHTML = '<strong>' + place.title + '</strong><br>Standort der Ferienwohnung';
+                }
+
+                var maps = listing.appendChild(document.createElement('a'));
+                maps.innerHTML = '<img src="directions.png" height="32" width="32"><br><small>Route<small>';
+                maps.href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(`${place.title} ${place.city}`).replace('%20', '+');
+                maps.rel = 'noopener';
+                maps.target = '_blank';
+
+                listing.addEventListener('click', (e) => {
+                    map.setZoom(15);
+                    map.setCenter(marker.getPosition());
+                });
+            }
+        }
+
+                
+
+    </script>
+</head>
+
+<body>
+    <div id='map' class='map'></div>
+    <div class='sidebar'>
+        <a id="back">
+            <p class="title"><strong>Zurück</strong><br>zum Startzustand</p>
+        </a>
+        <div id='listings' class='listings'></div>
+    </div>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArfNSl-AsM8ADgHHCno0Wbh1_W4Q4gtxE&callback=initMap&libraries=&v=weekly"
+        async></script>
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+html,
+body {
+    color: $dark;
+    background-color: $white;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.map {
+    height: 100%;
+    border: .2rem solid $light;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    position: absolute;
+    width: 28.5%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    padding-left: 1rem;
+}
+
+#back {
+    padding: 1rem;
+    color: $white;
+    background-color: $light;
+    margin-bottom: 1rem;
+
+    display: block;
+    border: .2rem solid $light;
+    text-decoration: none;
+
+    transition: all .5s ease;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border-color: $dark;
+        color: $white;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &.active {
+        background-color: $light;
+        color: $white;
+    }
+
+    .title {
+        display: block;
+
+        small {
+            font-weight: 400;
+        }
+    }
+}
+
+.map {
+    position: absolute;
+    right: 28.5%;
+    width: 100% - 28.5%;
+    top: 0;
+    bottom: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1.1;
+    padding: 1rem;
+}
+
+a {
+    color: $dark;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #101010;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.heading {
+    background: $white;
+
+    min-height: 3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    background-color: $light;
+    color: $white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.listings {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 5.5rem;
+
+    .item {
+        padding: 1rem;
+        background-color: $grey;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: .2rem solid $grey;
+        text-decoration: none;
+
+        transition: all .5s ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            border-color: $light;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &.active {
+            background-color: $light;
+            color: $white;
+        }
+
+        .title {
+            display: block;
+            color: $dark;
+
+            small {
+                font-weight: 400;
+            }
+        }
+
+        .maps {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 47px;
+        }
+    }
+}
+
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+    display: none;
+}
+
+.marker {
+    border: none;
+    cursor: pointer;
+    height: 38px;
+    width: 38px;
+    background-position: center;
+    background-image: url(marker.png);
+    background-size: contain;
+    background-color: transparent;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    border-top-color: $light;
+}
+
+.clearfix {
+    display: block;
+}
+
+.clearfix:after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* Marker tweaks */
+.mapboxgl-popup {
+    padding-bottom: 35px;
+}
+
+.mapboxgl-popup-close-button {
+    display: none;
+}
+
+.mapboxgl-popup-content {
+    font-family: $sans-serif;
+    padding: 0;
+}
+
+
+.mapboxgl-popup-content-wrapper {
+    padding: 1%;
+}
+
+.mapboxgl-popup-content h3 {
+    background: $light;
+    color: $white;
+    margin: 0;
+    display: block;
+    padding: .7rem .5rem;
+    text-align: center;
+    margin-top: -15px;
+    font-size: 1.1rem;
+    font-family: $sans-serif;
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+.mapboxgl-popup-content div {
+    padding: 10px;
+}
+
+.mapboxgl-container .leaflet-marker-icon {
+    cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
+    margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
+    border-bottom-color: $light;
+}
+
+.mapboxgl-popup-anchor-left>.mapboxgl-popup-tip {
+    border-right-color: $light;
+}
+
+.mapboxgl-popup-anchor-right>.mapboxgl-popup-tip {
+    border-left-color: $light;
+}
+
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+    border-top-color: $light;
+}
+
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+    border-top-color: $light;
+}
+
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+
+    border-bottom-color: $light;
+}
+
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+
+    border-bottom-color: $light;
+}

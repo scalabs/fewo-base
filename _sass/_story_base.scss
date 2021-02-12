@@ -1,0 +1,164 @@
+body,
+amp-story p {
+    font-family: 'Cormorant Garamond',
+        serif;
+    font-size: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small {
+    font-family: 'Cormorant Garamond',
+        serif;
+    font-weight: bold;
+    padding-bottom: .6rem;
+}
+
+amp-story h1 {
+    font-size: 3.8rem;
+    line-height: 4rem;
+}
+
+amp-story h2 {
+    font-size: 2.8rem;
+    line-height: 2.9rem;
+}
+
+amp-story h3 {
+    padding-top: 1rem;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+amp-story h4 {
+    font-size: 2.6rem;
+    line-height: 2.7rem;
+}
+
+amp-story h5 {
+    font-size: 2.5rem;
+    line-height: 2.6rem;
+}
+
+amp-story h6,
+amp-story small {
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+}
+
+amp-story p {
+    padding: 1rem 0 1rem;
+    font-family: $sans-serif;
+}
+
+.white {
+    color: $white;
+}
+
+.red {
+    color: $light;
+}
+
+.black {
+    color: $black;
+}
+
+.green {
+    color: $light;
+}
+
+.shadow-white {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+}
+
+
+.shadow-black {
+    text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.shadow-green {
+    text-shadow: 0px 0px 10px light;
+}
+
+.badge-green {
+    background-color: $grey;
+    line-height: 34px;
+    height: 34px;
+    font-size: 18px;
+    font-family: $serif;
+    color: black;
+    padding-left: 10px;
+    padding-right: 14px;
+    border-radius: 17px;
+
+}
+
+.badge-green:before {
+    content: '>';
+    font-style: normal;
+    color: black;
+    padding-right: 10px;
+}
+
+@media(max-width: 950px) {
+    .badge-fixed-top {
+        position: fixed;
+        bottom: 20px;
+        left: calc(100% - 130px);
+        right: auto;
+    }
+
+    .badge-fixed-bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        border-top-right-radius: 17px;
+    }
+}
+
+@media(min-width: 951px) {
+    .badge-fixed-top {
+        position: fixed;
+        top: 20px;
+        left: calc(100% - 130px);
+        right: auto;
+    }
+
+    .badge-fixed-bottom {
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-bottom-right-radius: 17px;
+    }
+}
+
+.badge-red {
+    background-color: $light;
+    line-height: 40px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.textbox-black {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1.4rem;
+    padding: 7px;
+    padding-left: 14px;
+}
+
+.center-align {
+    text-align: center;
+}
+.btn{
+    margin: 3rem;
+}

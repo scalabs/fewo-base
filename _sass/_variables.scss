@@ -1,0 +1,92 @@
+$dark: #5e5347;
+$light: #b6a68d;
+$grey: #f1eeee;
+$white: #fffefc;
+$black: black;
+
+$sandybrown: #ffc68c;
+$serif: 'Cormorant Garamond',
+serif;
+$sans-serif: 'Poppins',
+sans-serif;
+
+$max-width-text: 750px;
+$max-width-column: 1500px;
+
+@mixin divider($height, $background, $foreground: $black) {
+    background-color: $background;
+    min-height: $height;
+    margin: 5rem 0 1rem;
+    padding: 2rem;
+    font-family: $serif;
+    display: flex;
+    justify-content: center;
+
+    h1,
+    h2,
+    h3,
+    .title {
+        color: $foreground;
+        margin: 0;
+        letter-spacing: .2rem;
+    }
+}
+
+@mixin card-shape($color) {
+    background-color: $color;
+    border-radius: 2rem;
+
+    @include breakpoint('desktop') {
+        padding: 2rem;
+    }
+
+    @include breakpoint('until-desktop') {
+        padding: 1.5rem;
+        margin: 0 1.5rem 1.5rem;
+    }
+}
+
+@mixin section-shape($color) {
+    background-color: $color;
+
+}
+
+@mixin breakpoint($label) {
+    @if $label=='mobile' {
+        @media (max-width: 767px) {
+            @content;
+        }
+    }
+
+    @else if $label=='tablet' {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $label=='desktop' {
+        @media (min-width: 1000px) {
+            @content;
+        }
+    }
+
+    @else if $label=='until-desktop' {
+        @media (max-width: 999px) {
+            @content;
+        }
+    }
+
+    @else {
+        @error "the breakpoint label (#{label}) should either be mobile, tablet, desktop or until-desktop";
+    }
+}
+
+@mixin justified {
+    p {
+        text-align: justify;
+        text-justify: inter-ideograph;
+    }
+    ul li p{
+        text-align: left;
+    }
+}
