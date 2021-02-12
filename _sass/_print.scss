@@ -1,0 +1,20 @@
+@media print {
+    .header-selection {
+        opacity: 0;
+    }
+
+    .carousel.desktop .slide:not(.slide:first-child),
+    .no-print,
+    #booking,
+    .btn {
+        display: none;
+    }
+
+    .row{
+        page-break-inside: avoid;
+        .content {
+            border: 1rem solid #f1eeee;
+            background-color: none;
+        }
+    }
+}

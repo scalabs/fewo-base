@@ -1,7 +1,7 @@
-<div class="divider">
+<div class="divider no-print">
     <h3>{{ item.title }}</h3>
 </div>
-<div class="gallery">
+<div class="gallery no-print">
     <amp-carousel class="big" id="big-carousel" role="region" layout="fixed-height" height="540" type="slides">
 
         {% assign gallery = item.gallery | sort: 'position' %}
