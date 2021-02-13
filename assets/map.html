@@ -78,7 +78,7 @@ layout: none
                 p.className = 'title';
                 p.innerHTML = place.title;
 
-                if (place.distance != '') {
+                if (place.distance != '' && place.distance != undefined) {
                     p.innerHTML = '<strong>' + place.title + '</strong><br>ca. ' + place.distance + ' km entfernt';
                 } else {
                     p.innerHTML = '<strong>' + place.title + '</strong><br>Standort der Ferienwohnung';
